@@ -9,13 +9,14 @@ import { Suspense } from "react";
 const page = async () => {
   return (
     <main className="main-container">
-      <section className="home-grid"></section>
-      <Suspense fallback={<CoinOverviewFallback />}>
-        <CoinOverview />
-      </Suspense>
-      <Suspense fallback={<TrendingCoinsFallback />}>
-        <TrendingCoins />
-      </Suspense>
+      <section className="home-grid">
+        <Suspense fallback={<CoinOverviewFallback />}>
+          <CoinOverview />
+        </Suspense>
+        <Suspense fallback={<TrendingCoinsFallback />}>
+          <TrendingCoins />
+        </Suspense>
+      </section>
       <section className="w-full mt-7 space-y-4">
         <p>Categories</p>
       </section>
