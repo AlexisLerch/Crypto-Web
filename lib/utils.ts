@@ -2,6 +2,11 @@ import { clsx, type ClassValue } from "clsx";
 import { Time } from "lightweight-charts";
 import { twMerge } from "tailwind-merge";
 
+/**
+ * Merge multiple class-name inputs into a single normalized class string.
+ *
+ * @returns The combined class string with conflicting Tailwind classes resolved.
+ */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -48,6 +53,12 @@ export function trendingClasses(value: number) {
   };
 }
 
+/**
+ * Converts a date into a concise human-readable relative time string.
+ *
+ * @param date - The date to compare to now; may be a `Date`, an ISO date string, or a millisecond timestamp.
+ * @returns `'just now'` for times under 60 seconds; `'<N> min'` for minutes under 60; `'<N> hour(s)'` for hours under 24; `'<N> day(s)'` for days under 7; `'<N> week(s)'` for weeks under 4; otherwise the date formatted as `YYYY-MM-DD`.
+ */
 export function timeAgo(date: string | number | Date): string {
   const now = new Date();
   const past = new Date(date);
@@ -69,6 +80,12 @@ export function timeAgo(date: string | number | Date): string {
   return past.toISOString().split("T")[0];
 }
 
+/**
+ * Convert an array of OHLCData tuples into chart-ready objects with `Time`-typed timestamps and numeric `open`/`high`/`low`/`close`.
+ *
+ * @param data - Array of OHLCData tuples in the form `[time, open, high, low, close]` where `time` is expressed in seconds.
+ * @returns An array of objects `{ time, open, high, low, close }` typed for charting; consecutive entries with the same `time` are removed.
+ */
 export function convertOHLCData(data: OHLCData[]) {
   return data
     .map((d) => ({
