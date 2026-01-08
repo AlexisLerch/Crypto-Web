@@ -12,7 +12,6 @@ const page = async () => {
       <section className="home-grid">
         <Suspense fallback={<CoinOverviewFallback />}>
           <CoinOverview />
-          hola
         </Suspense>
         <Suspense fallback={<TrendingCoinsFallback />}>
           <TrendingCoins />
